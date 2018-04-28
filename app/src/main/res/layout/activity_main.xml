@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:mytv="http://schemas.android.com/apk/res/com.animate.lvweihao.testanimate"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             tools:context="com.animate.lvweihao.testanimate.MainActivity"
+             tools:ignore="ResAuto">
+
+    <ImageView
+            android:id="@+id/coin_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/coin"/>
+
+    <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="50dp"
+            android:src="@mipmap/version"/>
+
+    <ImageView
+            android:id="@+id/wallet_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/wallet"/>
+
+    <Button
+            android:id="@+id/start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="10dp"
+            android:text="start"/>
+
+    <com.animate.lvweihao.testanimate.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#aa0000"
+            mytv:text="This is My Text"
+            mytv:textSize="80sp"/>
+</FrameLayout>

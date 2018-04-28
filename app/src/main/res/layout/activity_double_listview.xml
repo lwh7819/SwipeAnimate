@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.animate.lvweihao.testanimate.SwipeLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/sll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DoubleLvActivity">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/line_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <ListView
+            android:id="@+id/lv1"
+            android:layout_width="290dp"
+            android:layout_height="match_parent"
+            android:divider="#ffffff"
+            android:background="#000000"/>
+
+    <View
+            android:layout_width="30dp"
+            android:background="#222222"
+            android:layout_height="match_parent"/>
+
+    <com.animate.lvweihao.testanimate.mListView
+            android:id="@+id/lv2"
+            android:layout_width="290dp"
+            android:layout_height="match_parent"
+            android:background="#000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/ll"
+                android:visibility="gone"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@mipmap/ic_launcher"/>
+            <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:textColor="#ffffff"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.animate.lvweihao.testanimate.SwipeLinearLayout>

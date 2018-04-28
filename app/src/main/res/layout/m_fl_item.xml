@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+            android:id="@+id/mll"
+            android:visibility="gone"
+            android:background="#ffffff"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/iv11"
+                android:layout_width="180px"
+                android:layout_height="180px"
+                android:background="@mipmap/ic_img"/>
+        <TextView
+                android:id="@+id/tv1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"/>
+        <TextView
+                android:id="@+id/tv2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+    </LinearLayout>
+    </LinearLayout>
+
