@@ -29,11 +29,9 @@ public class ViewActivity3 extends AppCompatActivity {
     private ViewGroup.LayoutParams listLayoutParams,viewLayoutParams;
     private ListView listView1,listView2;
     private View view,item1;
-    private View item2;
     private LinearLayout flItem;
     private int mScnWidth;
     private MyAdapter myAdapter1, myAdapter2;
-    private Animation animation, transformAnim, listAnimate;
     private int startX, endX, startY, endY;
     private List<Map<String, String>> list2 = new ArrayList<>();
     private OnSwipeChanged listener;
@@ -63,7 +61,6 @@ public class ViewActivity3 extends AppCompatActivity {
         wm.getDefaultDisplay().getMetrics(dm);
         mScnWidth = dm.widthPixels;
 
-        animation = AnimationUtils.loadAnimation(this, R.anim.animate_item_gone);
         creatViews();
         getLayoutParams();
         layoutViews();
