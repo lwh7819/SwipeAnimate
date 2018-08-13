@@ -16,13 +16,13 @@ import java.util.Map;
  * Created by lv.weihao on 2018/4/26.
  */
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
-    private List<Map<String, String>> arylist;
+    private List<Map<String, Object>> arylist;
     private Context mContext;
     private OnItemClickListenter listenter;
     private boolean isShow;
     private boolean clickable = true;
 
-    public MyRecyclerAdapter(Context mContext, List<Map<String, String>> arylist, boolean isShow) {
+    public MyRecyclerAdapter(Context mContext, List<Map<String, Object>> arylist, boolean isShow) {
         this.mContext = mContext;
         this.arylist = arylist;
         this.isShow = isShow;
@@ -44,7 +44,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     /**
      * 增加数据
      */
-    public void addData(int position, Map<String, String> data) {
+    public void addData(int position, Map<String, Object> data) {
         arylist.add(position, data);
         notifyItemInserted(position);//注意这里
     }
@@ -65,7 +65,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tv.setText(arylist.get(position).toString());
-        holder.tv2.setText(arylist.get(position).get("OLD_INDEX"));
+        holder.tv2.setText(arylist.get(position).get("OLD_INDEX").toString());
+        holder.iv.setBackground(mContext.getResources().getDrawable((int)arylist.get(position).get("IMG")));
 
         ViewGroup.LayoutParams layoutParams = holder.iv.getLayoutParams();
         int ivWidth = 180;

@@ -41,21 +41,27 @@ public class ViewActivity2 extends AppCompatActivity {
     private int mScnHeigh;
     private MyRecyclerAdapter myAdapter1, myAdapter2;
     private int startX, endX, startY, endY;
-    private List<Map<String, String>> list2 = new ArrayList<>();
+    private List<Map<String, Object>> list2 = new ArrayList<>();
     private OnSwipeChanged listener;
     private int firstViewHeight;
 
-    private static ArrayList<Map<String, String>> mLeftData = new ArrayList<Map<String, String>>() {
+    private static Integer[] imgs = {R.mipmap.a001, R.mipmap.a002, R.mipmap.a003, R.mipmap.a004,
+            R.mipmap.a005, R.mipmap.a007, R.mipmap.a022, R.mipmap.a009, R.mipmap.a010,
+            R.mipmap.a011, R.mipmap.a012, R.mipmap.a013, R.mipmap.a014, R.mipmap.a015, R.mipmap.a016,
+            R.mipmap.a017, R.mipmap.a018, R.mipmap.a019, R.mipmap.a020, R.mipmap.a021};
+
+    private static ArrayList<Map<String, Object>> mLeftData = new ArrayList<Map<String, Object>>() {
         {
             for (int i = 0; i < 20; i++) {
-                Map<String, String> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>();
                 map.put("OLD_INDEX", String.valueOf(i));
                 map.put("CONTENT", "hello world, hello android  " + i);
+                map.put("IMG", imgs[i]);
                 add(map);
             }
         }
     };
-    private Map<String, String> map;
+    private Map<String, Object> map;
     private int olderPosition;
     private int mOlderIndex;
 
@@ -145,6 +151,8 @@ public class ViewActivity2 extends AppCompatActivity {
                 endX = listLayoutParams.width + viewLayoutParams.width;
                 startY = Pos[1] - getStatusBarHeight() - firstViewHeight;
                 endY = list2.size() * 108;
+                int idx = Integer.parseInt(((TextView)view.findViewById(R.id.tv2)).getText().toString());
+                item1.findViewById(R.id.iv11).setBackground(getResources().getDrawable(imgs[idx]));
                 ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(item1, "translationX", 0, endX);
                 ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(item1, "translationY", startY, endY - 45);
                 ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(item1, "scaleY", 1f, 0.6f);
@@ -180,12 +188,12 @@ public class ViewActivity2 extends AppCompatActivity {
             @Override
             public void onItemClickListener(View view, final int position) {
                 boolean isFirst = true;
-                olderPosition = Integer.parseInt(list2.get(position).get("OLD_INDEX"));
-                mOlderIndex = Integer.parseInt(list2.get(position).get("OLD_INDEX"));
+                olderPosition = Integer.parseInt(list2.get(position).get("OLD_INDEX").toString());
+                mOlderIndex = Integer.parseInt(list2.get(position).get("OLD_INDEX").toString());
                 if (mLeftData.size() > 0) {
                     if (mLeftData.size() <= olderPosition) {
                         for (int i = 0; i < mLeftData.size(); i++) {
-                            if (mOlderIndex > Integer.parseInt(mLeftData.get(mLeftData.size() - i - 1).get("OLD_INDEX"))) {
+                            if (mOlderIndex > Integer.parseInt(mLeftData.get(mLeftData.size() - i - 1).get("OLD_INDEX").toString())) {
                                 if (isFirst) {
                                     olderPosition = mLeftData.size() - i;
                                 }
@@ -197,7 +205,7 @@ public class ViewActivity2 extends AppCompatActivity {
                         }
                     } else if (mLeftData.size() > olderPosition) {
                         for (int i = 1; i < mOlderIndex + 1; i++) {
-                            if (mOlderIndex > Integer.parseInt(mLeftData.get(mOlderIndex - i).get("OLD_INDEX"))) {
+                            if (mOlderIndex > Integer.parseInt(mLeftData.get(mOlderIndex - i).get("OLD_INDEX").toString())) {
                                 break;
                             } else {
                                 olderPosition = mOlderIndex - i;
@@ -234,6 +242,8 @@ public class ViewActivity2 extends AppCompatActivity {
                     endY = Pos[1] - getStatusBarHeight() - firstViewHeight;
                 }
 
+                int idx = Integer.parseInt(((TextView)view.findViewById(R.id.tv2)).getText().toString());
+                item1.findViewById(R.id.iv11).setBackground(getResources().getDrawable(imgs[idx]));
                 ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(item1, "translationX", startX, endX);
                 ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(item1, "translationY", startY, endY);
                 ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(item1, "scaleY", 1f, 1.2f, 1f, 1f, 1f);
