@@ -164,6 +164,7 @@ public class ViewActivity2 extends AppCompatActivity {
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         myAdapter1.setClickable(true);
+                        myAdapter2.setClickable(false);
                         item1.setVisibility(View.GONE);
                         list2.add(map);
                         myAdapter2.notifyDataSetChanged();
@@ -173,6 +174,7 @@ public class ViewActivity2 extends AppCompatActivity {
                     public void onAnimationStart(Animator animation) {
                         super.onAnimationStart(animation);
                         myAdapter1.setClickable(false);
+                        myAdapter2.setClickable(true);
                         map = mLeftData.get(position);
                         item1.setVisibility(View.VISIBLE);
                         TextView tv = (TextView) flItem.findViewById(R.id.tv1);
@@ -234,7 +236,19 @@ public class ViewActivity2 extends AppCompatActivity {
 
                 if (olderPosition > lastVisiblePosition) {
 //                    endY = mLeftData.size() * itemHeight;
-                    endY = mScnHeigh + itemHeight;
+                    if (mLeftData.size() == 0) {
+                        endY = 0;
+                    } else {
+                        Log.e("lwh", lastVisiblePosition - firstVisiblePosition + "");
+                        listView1.getChildAt(lastVisiblePosition - firstVisiblePosition).getLocationOnScreen(Pos);
+                        int lastVisibleHeight = Pos[1] + itemHeight;
+                        Log.e("lwh", "lastVisibleHeight: " + lastVisibleHeight + "  mScnHeigh:" + mScnHeigh);
+                        if (lastVisibleHeight < mScnHeigh) {
+                            endY = mLeftData.size() * itemHeight;
+                        } else {
+                            endY = mScnHeigh + itemHeight;
+                        }
+                    }
                 } else if (olderPosition < firstVisiblePosition) {
                     endY = -itemHeight;
                 } else {
@@ -256,6 +270,7 @@ public class ViewActivity2 extends AppCompatActivity {
                         super.onAnimationEnd(animation);
                         item1.setVisibility(View.GONE);
                         myAdapter2.setClickable(true);
+                        myAdapter1.setClickable(false);
                     }
 
                     @Override
@@ -263,6 +278,7 @@ public class ViewActivity2 extends AppCompatActivity {
                         super.onAnimationStart(animation);
                         item1.setVisibility(View.VISIBLE);
                         myAdapter2.setClickable(false);
+                        myAdapter1.setClickable(true);
 
                         myAdapter1.addData(olderPosition, list2.get(position));
                         myAdapter2.removeData(position);
