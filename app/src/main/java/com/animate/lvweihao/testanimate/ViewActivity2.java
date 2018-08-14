@@ -33,7 +33,7 @@ import java.util.Map;
 public class ViewActivity2 extends AppCompatActivity {
     private FrameLayout flView;
     private MyLinearLayout mllView;
-    private ViewGroup.LayoutParams listLayoutParams, viewLayoutParams;
+    private ViewGroup.LayoutParams listLayoutParams, viewLayoutParams, headLayoutParams;
     private RecyclerView listView1, listView2;
     private View view, item1;
     private LinearLayout flItem;
@@ -81,6 +81,7 @@ public class ViewActivity2 extends AppCompatActivity {
         mTextView = (TextView) findViewById(R.id.textView);
         View mView = findViewById(R.id.first_view);
         firstViewHeight = mView.getLayoutParams().height;
+        Log.e("lwh", "firstViewHeight:" + firstViewHeight + "mScnHeigh: " + mScnHeigh);
 
         creatViews();
         getLayoutParams();
@@ -102,6 +103,7 @@ public class ViewActivity2 extends AppCompatActivity {
     private void getLayoutParams() {
         listLayoutParams = new ViewGroup.LayoutParams(mScnWidth - 220, ViewGroup.LayoutParams.MATCH_PARENT);
         viewLayoutParams = new ViewGroup.LayoutParams(80, ViewGroup.LayoutParams.MATCH_PARENT);
+        headLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
     }
 
     private void layoutViews() {
@@ -112,16 +114,25 @@ public class ViewActivity2 extends AppCompatActivity {
                 myAdapter1.setClickable(isShow);
                 myAdapter2.setClickable(!isShow);
                 if (isShow) {
-                    mTextView.setText("first");
+                    mTextView.setText("浏览");
                 } else {
-                    mTextView.setText("second");
+                    mTextView.setText("我的收藏");
                 }
             }
         };
         mllView = new MyLinearLayout(this, listener);
         mllView.addView(listView1, listLayoutParams);
         mllView.addView(view, viewLayoutParams);
-        mllView.addView(listView2, listLayoutParams);
+
+        LinearLayout mLl = new LinearLayout(this);
+        mLl.setOrientation(LinearLayout.VERTICAL);
+        View head = new View(this);
+        head.setBackgroundColor(Color.parseColor("#ffffef"));
+        mLl.addView(head, headLayoutParams);
+        mLl.addView(listView2, listLayoutParams);
+        mllView.addView(mLl, listLayoutParams);
+
+//        mllView.addView(listView2, listLayoutParams);
         flView = (FrameLayout) findViewById(R.id.fl);
         flView.addView(mllView);
         flView.addView(flItem);
@@ -150,7 +161,7 @@ public class ViewActivity2 extends AppCompatActivity {
                 view.getLocationOnScreen(Pos);
                 endX = listLayoutParams.width + viewLayoutParams.width;
                 startY = Pos[1] - getStatusBarHeight() - firstViewHeight;
-                endY = list2.size() * 108;
+                endY = list2.size() * 108 + headLayoutParams.height;
                 int idx = Integer.parseInt(((TextView)view.findViewById(R.id.tv2)).getText().toString());
                 item1.findViewById(R.id.iv11).setBackground(getResources().getDrawable(imgs[idx]));
                 ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(item1, "translationX", 0, endX);

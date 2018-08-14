@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
             android:id="@+id/first_view"
             android:layout_width="match_parent"
             android:gravity="center"
+            android:orientation="vertical"
             android:background="#ffffef"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
         <TextView
                 android:id="@+id/textView"
-                android:text="start"
+                android:text="浏览"
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </RelativeLayout>
+                android:layout_height="50dp"/>
+    </LinearLayout>
 
 <FrameLayout
              android:id="@+id/fl"
+             android:layout_below="@id/first_view"
              android:background="#eeeeee"
               android:layout_width="wrap_content"
               android:layout_height="match_parent">
 </FrameLayout>
-</LinearLayout>
+</RelativeLayout>
